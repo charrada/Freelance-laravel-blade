@@ -62,11 +62,21 @@
                     </a>
                 </li>
             @endcan
- 
+                       <!--Projects Management -->
+                       <li class="nav-item">
+                        <a href="{{ route('admin.projects.index') }}" class="nav-link {{ request()->is('admin/locations') || request()->is('admin/locations/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-folder nav-icon"></i> <!-- Changed the icon to represent projects -->
+                            {{ trans('cruds.project.title') }}
+                        </a>
+                    </li>
 
-
-
-
+                    <!--Tasks Management -->
+                    <li class="nav-item">
+                        <a href="{{ route('admin.tasks.index') }}" class="nav-link {{ request()->is('admin/locations') || request()->is('admin/locations/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-tasks nav-icon"></i> <!-- Changed the icon to represent tasks -->
+                            {{ trans('cruds.task.title') }}
+                        </a>
+                    </li>
             @can('company_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.companies.index") }}" class="nav-link {{ request()->is('admin/companies') || request()->is('admin/companies/*') ? 'active' : '' }}">
@@ -77,9 +87,6 @@
                     </a>
                 </li>
             @endcan
-
-
-
             @can('job_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.jobs.index") }}" class="nav-link {{ request()->is('admin/jobs') || request()->is('admin/jobs/*') ? 'active' : '' }}">
@@ -90,20 +97,43 @@
                     </a>
                 </li>
             @endcan
+            <li class="nav-item">
+                <a href="{{ route("contratsadmin.index") }}" class="nav-link {{ request()->is('admin/contrats') || request()->is('admin/contrats/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-clipboard nav-icon"></i>
+                    {{ trans('Contrat') }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route("offresadmin.index") }}" class="nav-link {{ request()->is('admin/contrats') || request()->is('admin/contrats/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-clipboard nav-icon"></i>
+                    {{ trans('Offres') }}
+                </a>
+            </li>
 
+            <li class="nav-item">
+                <a href="{{ route("payment.index") }}" class="nav-link {{ request()->is('admin/payments') || request()->is('admin/payments/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-dollar-sign nav-icon"></i>
+                    {{ trans('Payment') }}
+                </a>
+            </li>
 
             @can('location_access')
-                    <a href="{{ route("admin.locations.index") }}" class="nav-link {{ request()->is('admin/locations') || request()->is('admin/locations/*') ? 'active' : '' }}">
-                        <i class="fa-fw fas fa-clipboard nav-icon">
 
-                        </i>
-                        Claims
-                    </a>
-            @endcan
-         
+<li class="nav-item">
+    <a href="{{ route("admin.claims.index") }}" class="nav-link {{ request()->is('admin/claims') || request()->is('admin/claims/*') ? 'active' : '' }}">
+        <i class="fa-fw fas fa-clipboard nav-icon"></i>
+        Claims
+    </a>
+</li>
+@endcan
+
+
+
+
         </ul>
 
     </nav>
+
 
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-fw fa-sign-out-alt">
@@ -114,5 +144,4 @@
 
 
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-    
 </div>

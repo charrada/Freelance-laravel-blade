@@ -67,6 +67,9 @@
                 </div>
             </div>
         </div>
+        <div class="mt-4 text-center">
+            <p>{{ trans('Dont have an account Register') }}? <a href="{{ route('register') }}" class="btn btn-secondary">{{ trans('global.register') }}</a></p>
+        </div>
     </div>
 </div>
 @endsection

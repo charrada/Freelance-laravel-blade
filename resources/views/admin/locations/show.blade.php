@@ -28,15 +28,54 @@
                 Back to list
             </a>
         </div>
-
-        <nav class="mb-3">
-            <div class="nav nav-tabs">
-
-            </div>
-        </nav>
-        <div class="tab-content">
-
-        </div>
     </div>
 </div>
+
+
+
+
+<div class="container mt-4">
+    <h3>Comments</h3>
+    <div style="max-height: 400px; overflow-y: auto;">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($comments as $comment)
+                    @if ($comment->claim_id == $location->id)
+                        <tr>
+                            <td>
+                                @if ($comment->comment_role == 1)
+                                    <span style="color: red;">[Admin]: {{ $comment->comment_text }}</span>
+                                @else
+                                    [User]: {{ $comment->comment_text }}
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+                <tr>
+                    <td>
+                        <form action="{{ route("admin.locations.store") }}" method="post">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" name="comment_text" id="comment_text" class="form-control" placeholder="Add Comment">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <input type="hidden" name="comment_role" value="1">
+                                    <input type="hidden" name="claim_id" value="{{ $location->id }}">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 @endsection

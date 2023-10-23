@@ -26,4 +26,16 @@ class Claim extends Model
         'claim_status' => 0,
     ];
     
+
+    public function comments()
+    {
+        return $this->hasMany(ClaimComment::class, 'claim_id');
+    }
+
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'claim_mail', 'email');
+}
+
 }

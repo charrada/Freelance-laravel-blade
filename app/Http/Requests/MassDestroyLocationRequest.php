@@ -22,7 +22,7 @@ class MassDestroyLocationRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:locations,id',
+            'ids.*' => 'exists:claims,id', // Use 'claims' for the table name
         ];
     }
 }

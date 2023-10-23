@@ -151,4 +151,62 @@ return [
             'salary_helper'            => '',
         ],
     ],
+
+    'task'            => [
+        'title'          => 'Tasks',
+        'title_singular' => 'Task',
+        'fields'         => [
+            'id'                       => 'ID',
+            'id_helper'                => '',
+            'title'                    => 'Title',
+            'title_helper'             => '',
+            'datedebut'                => 'Start Date',
+            'datedebut_helper'         => '',
+            'datefin'                  => 'End Date',
+            'datefin_helper'           => '',
+            'etattache'                => 'Status',
+            'etattache_helper'         => '',
+            'id_project'               => 'Project',
+            'id_project_helper'        => '',
+            'created_at'               => 'Created at',
+            'created_at_helper'        => '',
+            'updated_at'               => 'Updated at',
+            'updated_at_helper'        => '',
+            'deleted_at'               => 'Deleted at',
+            'deleted_at_helper'        => '',
+        ],
+    ],
+//////////////project translation//////////////////
+'project' => [
+    'title'          => 'Projects',
+    'title_singular' => 'Project',
+    'fields'         => [
+        'id'                   => 'ID',
+        'id_helper'            => '',
+        'titre'                => 'Title',
+        'titre_helper'         => '',
+        'Description'          => 'Description',
+        'Description_helper'   => '',
+        'DateDebut'            => 'Start Date',
+        'DateDebut_helper'     => '',
+        'DateFin'              => 'End Date',
+        'DateFin_helper'       => '',
+        'Budget'               => 'Budget',
+        'Budget_helper'        => '',
+        'competences'          => 'Skills',
+        'competences_helper'   => '',
+        'etat'                 => 'Status',
+        'etat_helper'          => '',
+        'created_at'           => 'Created at',
+        'created_at_helper'    => '',
+        'updated_at'           => 'Updated at',
+        'updated_at_helper'    => '',
+        'deleted_at'           => 'Deleted at',
+        'deleted_at_helper'    => '',
+    ],
+],
+
+
+//////////////////////////////
 ];
+

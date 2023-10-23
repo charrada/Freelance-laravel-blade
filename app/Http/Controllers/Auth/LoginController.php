@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,4 +37,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function logout(Request $request)
+{
+    $this->guard()->logout();
+
+    $request->session()->invalidate();
+
+    return redirect('/login');
+}
+protected function authenticated(Request $request, $user)
+{
+    if ($user->email === 'admin@admin.com') {
+        return redirect('/admin');
+    }
+
+    return redirect($this->redirectTo); // This will take other users to the default defined redirectTo
+}
 }

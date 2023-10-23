@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function claims()
+    {
+        return $this->hasMany(Claim::class, 'claim_mail', 'email');
+    }
 }

@@ -8,6 +8,8 @@ use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
 use App\Location;
 use App\Claim;
+use App\ClaimComment;
+
 
 use Gate;
 use Illuminate\Http\Request;
@@ -20,6 +22,9 @@ class LocationsController extends Controller
         abort_if(Gate::denies('location_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $locations = Claim::all();
+        $comments = ClaimComment::all(); // Récupérez tous les commentaires
+        $claims = Claim::all(); // Récupérez toutes les réclamations
+
 
         return view('admin.locations.index', compact('locations'));
     }
@@ -31,13 +36,29 @@ class LocationsController extends Controller
         return view('admin.locations.create');
     }
 
-    public function store(StoreLocationRequest $request)
+    public function store(Request $request)
     {
-        $location = Location::create($request->all());
-
-        return redirect()->route('admin.locations.index');
+        // Validate the form data
+        $request->validate([
+            'claim_id' => 'required|exists:claims,id',
+            'comment_text' => 'required',
+            'comment_role' => 'required',
+        ]);
+    
+        // Create a new ClaimComment instance
+        $comment = new ClaimComment([
+            'claim_id' => $request->input('claim_id'),
+            'comment_text' => $request->input('comment_text'),
+            'comment_role' => $request->input('comment_role'),
+        ]);
+    
+        // Save the comment to the database
+        $comment->save();
+    
+        // Redirect to the comments show page for the corresponding location
+        return redirect()->route('admin.locations.show', $request->input('claim_id'));
     }
-
+    
     public function edit(Claim $location)
     {
         abort_if(Gate::denies('location_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -55,9 +76,12 @@ class LocationsController extends Controller
     public function show(Claim $location)
     {
         abort_if(Gate::denies('location_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.locations.show', compact('location'));
+        
+        $comments = ClaimComment::where('claim_id', $location->id)->get();
+    
+        return view('admin.locations.show', compact('location', 'comments'));
     }
+    
 
     public function destroy(Claim $location)
     {

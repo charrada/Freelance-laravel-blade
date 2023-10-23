@@ -13,9 +13,11 @@ class CreateClaimsTable extends Migration
             $table->string('claim_title');
             $table->text('claim_details');
             $table->integer('claim_status')->default(0);
-            $table->integer('claim_rating')->default(0);;
+            $table->integer('claim_rating')->default(0);
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('claim_mail')->references('email')->on('users');
+
         });
     }
 

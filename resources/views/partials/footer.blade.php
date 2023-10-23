@@ -29,7 +29,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="claim-mail">Email:</label>
-                  <input placeholder="Your Email" type="email" name="claim_mail" class="form-control" required>
+                  <input readonly value={{ auth()->user()->email ?? '' }}  type="email" name="claim_mail" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="claim-title">Title:</label>
@@ -60,6 +60,8 @@
 
       </div>
     </div>
+    &nbsp;&nbsp;&nbsp;Hey, {{ auth()->user()->name ?? '' }} you can check your claims <a href="claim_comment">CLICK HERE</a>
+
   </footer>
 
   <script>

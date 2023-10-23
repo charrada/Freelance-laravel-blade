@@ -26,4 +26,5 @@ class CreateMediaTable extends Migration
             $table->nullableTimestamps();
         });
     }
+   
 }
